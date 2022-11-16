@@ -10,19 +10,19 @@ class IUserApplicationService(metaclass=abc.ABCMeta):
     """アプリケーションサービスのインターフェース
     クライアント側でモック実装を作れるようにインターフェースを作る
     """
-    @abc.abstractclassmethod
+    @abc.abstractmethod
     def register(self, first_name: str, last_name: str):
         raise NotImplementedError
 
-    @abc.abstractclassmethod
+    @abc.abstractmethod
     def get(self, id: int) -> Optional[User]:
         raise NotImplementedError
 
-    @abc.abstractclassmethod
+    @abc.abstractmethod
     def update(self, id: int, first_name: Optional[str] = None, last_name: Optional[str] = None): 
         raise NotImplementedError
 
-    @abc.abstractclassmethod
+    @abc.abstractmethod
     def delete(self, id: int):
         raise NotImplementedError
 

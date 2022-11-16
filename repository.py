@@ -17,19 +17,19 @@ class UserStoreSchema(BaseModel):
 
 class IUserRepository(metaclass=abc.ABCMeta):
     """リポジトリのインターフェース"""
-    @abc.abstractclassmethod
+    @abc.abstractmethod
     def save(self, user: User) -> User:
         raise NotImplementedError
 
-    @abc.abstractclassmethod
+    @abc.abstractmethod
     def delete(self, id: int):
         raise NotImplementedError
 
-    @abc.abstractclassmethod
+    @abc.abstractmethod
     def find_by_name(self, user_name: FullName) -> Optional[User]:
         raise NotImplementedError
 
-    @abc.abstractclassmethod
+    @abc.abstractmethod
     def find(self, id: int) -> Optional[User]:
         raise NotImplementedError
 

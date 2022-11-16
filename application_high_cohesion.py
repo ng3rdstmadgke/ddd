@@ -7,22 +7,22 @@ from pydantic import BaseModel
 from dataclasses import dataclass
 
 class IUserRegisterApplicationService(metaclass=abc.ABCMeta):
-    @abc.abstractclassmethod
+    @abc.abstractmethod
     def register(self, first_name: str, last_name: str):
         raise NotImplementedError
 
 class IUserGetApplicationService(metaclass=abc.ABCMeta):
-    @abc.abstractclassmethod
+    @abc.abstractmethod
     def get(self, id: int) -> Optional[User]:
         raise NotImplementedError
 
 class IUserUpdateApplicationService(metaclass=abc.ABCMeta):
-    @abc.abstractclassmethod
+    @abc.abstractmethod
     def update(self, id: int, first_name: Optional[str] = None, last_name: Optional[str] = None): 
         raise NotImplementedError
 
 class IUserDeleteApplicationService(metaclass=abc.ABCMeta):
-    @abc.abstractclassmethod
+    @abc.abstractmethod
     def delete(self, id: int):
         raise NotImplementedError
 
