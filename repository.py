@@ -2,7 +2,7 @@ import abc
 import os
 from typing import Optional, List
 from entity import User
-from value_object_2 import FullName
+from value_object import UserName
 from pydantic import BaseModel
 
 class UserStoreSchema(BaseModel):
@@ -22,11 +22,11 @@ class IUserRepository(metaclass=abc.ABCMeta):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def delete(self, id: int):
+    def delete(self, user: User):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def find_by_name(self, user_name: FullName) -> Optional[User]:
+    def find_by_name(self, user_name: UserName) -> Optional[User]:
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -74,7 +74,7 @@ class UserRepository(IUserRepository):
             store.users.remove(delete_user)
             self._save(store)
 
-    def find_by_name(self, user_name: FullName) -> Optional[User]:
+    def find_by_name(self, user_name: UserName) -> Optional[User]:
         for user in self._load().users:
             if user.full_name == user_name:
                 return user
@@ -117,7 +117,7 @@ if __name__ == "__main__":
 
 
     # ユーザー追加処理
-    user = User(full_name=FullName(first_name="kta", last_name="mido"))
+    user = User(full_name=UserName(first_name="kta", last_name="mido"))
 
     # 同名のユーザーが存在しなければuserを追加
     if not service.exists(user):

@@ -1,7 +1,7 @@
 from pydantic import BaseModel, ValidationError, validator
 
 # pydantic: https://pydantic-docs.helpmanual.io/usage/models/
-class FullName(BaseModel):
+class UserName(BaseModel):
   first_name: str
   last_name: str
 
@@ -21,9 +21,9 @@ class FullName(BaseModel):
       allow_mutation = False
 
 if __name__ == "__main__":
-  full_name1 = FullName(first_name="keita", last_name="midorikawa")
-  full_name2 = FullName(first_name="keita", last_name="midorikawa")
-  # full_name3 = FullName(first_name="", last_name="")  # バリデーションエラー
+  full_name1 = UserName(first_name="keita", last_name="midorikawa")
+  full_name2 = UserName(first_name="keita", last_name="midorikawa")
+  # full_name3 = UserName(first_name="", last_name="")  # バリデーションエラー
   # full_name1.first_name = "hoge"  # エラー
   print(full_name1)  # keita midorikawa
   print(full_name1 == full_name2)  # True

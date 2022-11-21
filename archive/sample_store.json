@@ -1,0 +1,19 @@
+{
+  "id": 4,
+  "users": [
+    {
+      "id": 2,
+      "full_name": {
+        "first_name": "foo",
+        "last_name": "bar"
+      }
+    },
+    {
+      "id": 1,
+      "full_name": {
+        "first_name": "keita",
+        "last_name": "midorikawa"
+      }
+    }
+  ]
+}

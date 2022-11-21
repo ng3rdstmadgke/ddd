@@ -1,6 +1,6 @@
 from typing import Optional
 from entity import User
-from value_object_2 import FullName
+from value_object import UserName
 from repository import IUserRepository, UserStoreSchema, UserService
 
 class InMemoryRepository(IUserRepository):
@@ -20,7 +20,7 @@ class InMemoryRepository(IUserRepository):
             user.id = self.data.increment()
         self.data.users.append(user)
 
-    def find_by_name(self, user_name: FullName) -> Optional[User]:
+    def find_by_name(self, user_name: UserName) -> Optional[User]:
         for user in self.data.users:
             if user.full_name == user_name:
                 return user
@@ -39,14 +39,14 @@ class UserServiceTest:
 
     def test_exists_false(self):
         """UserServiceのexistsメソッドをテスト"""
-        user = User(full_name=FullName(first_name="kta", last_name="mido"))
+        user = User(full_name=UserName(first_name="kta", last_name="mido"))
         repository = InMemoryRepository()
         service = UserService(repository)
         assert service.exists(user) == False
 
     def test_exists_true(self):
         """UserServiceのexistsメソッドをテスト"""
-        user = User(full_name=FullName(first_name="kta", last_name="mido"))
+        user = User(full_name=UserName(first_name="kta", last_name="mido"))
         repository = InMemoryRepository()
         repository.save(user)
         service = UserService(repository)
