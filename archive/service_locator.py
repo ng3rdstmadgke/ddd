@@ -25,7 +25,7 @@ if __name__ == "__main__":
     # リポジトリインスタンス
     repository = Repository("store.json")
 
-    user = User(full_name=UserName(first_name="foo", last_name="bar"))
+    user = User(user_name=UserName(first_name="foo", last_name="bar"))
 
     repository.save(user)
     repository.delete(user)

@@ -26,7 +26,7 @@ class Container(containers.DeclarativeContainer):
 
 if __name__ == "__main__":
     config = {
-        "store_path": "sample_store.json"
+        "store_path": "store.json"
     }
 
     container = Container()
@@ -48,7 +48,7 @@ if __name__ == "__main__":
     app.register("hoge", "piyo")
 
     # 取得
-    print(app.get(1))  # id=1 full_name=UserName(first_name='kta', last_name='mido')
+    print(app.get(1))  # id=1 user_name=UserName(first_name='kta', last_name='mido')
 
     # 更新
     app.update(1, "keita", "midorikawa")

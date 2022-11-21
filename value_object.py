@@ -21,9 +21,9 @@ class UserName(BaseModel):
       allow_mutation = False
 
 if __name__ == "__main__":
-  full_name1 = UserName(first_name="keita", last_name="midorikawa")
-  full_name2 = UserName(first_name="keita", last_name="midorikawa")
-  # full_name3 = UserName(first_name="", last_name="")  # バリデーションエラー
-  # full_name1.first_name = "hoge"  # エラー
-  print(full_name1)  # keita midorikawa
-  print(full_name1 == full_name2)  # True
+  user_name1 = UserName(first_name="keita", last_name="midorikawa")
+  user_name2 = UserName(first_name="keita", last_name="midorikawa")
+  # user_name3 = UserName(first_name="", last_name="")  # バリデーションエラー
+  # user_name1.first_name = "hoge"  # エラー
+  print(user_name1)  # keita midorikawa
+  print(user_name1 == user_name2)  # True

@@ -32,10 +32,10 @@ class UserRegisterApplicationService(IUserRegisterApplicationService):
         self.repository = repository
 
     def register(self, first_name: str, last_name: str):
-        full_name = UserName(first_name=first_name, last_name=last_name)
-        user = User(full_name=full_name)
+        user_name = UserName(first_name=first_name, last_name=last_name)
+        user = User(user_name=user_name)
         if self.service.exists(user):
-            raise Exception(f"{user.full_name} はすでに存在しています")
+            raise Exception(f"{user.user_name} はすでに存在しています")
         self.repository.save(user)
 
 class UserGetApplicationService(IUserGetApplicationService):
@@ -56,9 +56,9 @@ class UserUpdateApplicationService(IUserUpdateApplicationService):
         if user is None:
             raise Exception(f"ユーザーが見つかりません (id={id})")
         if first_name is not None and last_name is not None:
-            user.full_name = UserName(first_name=first_name, last_name=last_name)
+            user.user_name = UserName(first_name=first_name, last_name=last_name)
             if (self.service.exists(user)):
-                raise Exception(f"{user.full_name} はすでに存在しています")
+                raise Exception(f"{user.user_name} はすでに存在しています")
         self.repository.save(user)
 
 class UserDeleteApplicationService(IUserDeleteApplicationService):
@@ -92,7 +92,7 @@ if __name__ == "__main__":
 
     # 取得
     user = UserGetApplicationService(repository, service).get(1)
-    print(user)  # id=1 full_name=UserName(first_name='kta', last_name='mido')
+    print(user)  # id=1 user_name=UserName(first_name='kta', last_name='mido')
 
     # 更新
     UserUpdateApplicationService(repository, service).update(1, "keita", "midorikawa")

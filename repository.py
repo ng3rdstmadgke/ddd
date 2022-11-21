@@ -76,7 +76,7 @@ class UserRepository(IUserRepository):
 
     def find_by_name(self, user_name: UserName) -> Optional[User]:
         for user in self._load().users:
-            if user.full_name == user_name:
+            if user.user_name == user_name:
                 return user
         return None
 
@@ -100,7 +100,7 @@ class UserService:
     # 「ユーザーの重複確認」はドメインのルールに近いので、existsはドメインサービスに実装する
     def exists(self, user: User) -> bool:
         # データの入出力処理をリポジトリに閉じ込めることで、見通しが良くなる
-        found = self.user_repository.find_by_name(user.full_name)
+        found = self.user_repository.find_by_name(user.user_name)
         return found is not None
 
 if __name__ == "__main__":
@@ -117,7 +117,7 @@ if __name__ == "__main__":
 
 
     # ユーザー追加処理
-    user = User(full_name=UserName(first_name="kta", last_name="mido"))
+    user = User(user_name=UserName(first_name="kta", last_name="mido"))
 
     # 同名のユーザーが存在しなければuserを追加
     if not service.exists(user):

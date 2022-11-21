@@ -13,8 +13,8 @@ class UserName:
     return f"{self.first_name} {self.last_name}"
 
 if __name__ == "__main__":
-  full_name1 = UserName(first_name="keita", last_name="midorikawa")
-  full_name2 = UserName(first_name="keita", last_name="midorikawa")
-  # full_name1.first_name = "hoge"  # エラー
-  print(full_name1)
-  print(full_name1 == full_name2)
+  user_name1 = UserName(first_name="keita", last_name="midorikawa")
+  user_name2 = UserName(first_name="keita", last_name="midorikawa")
+  # user_name1.first_name = "hoge"  # エラー
+  print(user_name1)
+  print(user_name1 == user_name2)

@@ -22,7 +22,7 @@ class InMemoryRepository(IUserRepository):
 
     def find_by_name(self, user_name: UserName) -> Optional[User]:
         for user in self.data.users:
-            if user.full_name == user_name:
+            if user.user_name == user_name:
                 return user
         return None
 
@@ -39,14 +39,14 @@ class UserServiceTest:
 
     def test_exists_false(self):
         """UserServiceのexistsメソッドをテスト"""
-        user = User(full_name=UserName(first_name="kta", last_name="mido"))
+        user = User(user_name=UserName(first_name="kta", last_name="mido"))
         repository = InMemoryRepository()
         service = UserService(repository)
         assert service.exists(user) == False
 
     def test_exists_true(self):
         """UserServiceのexistsメソッドをテスト"""
-        user = User(full_name=UserName(first_name="kta", last_name="mido"))
+        user = User(user_name=UserName(first_name="kta", last_name="mido"))
         repository = InMemoryRepository()
         repository.save(user)
         service = UserService(repository)
