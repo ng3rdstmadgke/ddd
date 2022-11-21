@@ -2,7 +2,7 @@ from value_object import UserName
 from pydantic import BaseModel
 
 class User(BaseModel):
-    id: int = 0
+    id: int
     user_name: UserName
 
     def __eq__(self, other):

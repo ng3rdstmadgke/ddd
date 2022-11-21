@@ -15,9 +15,6 @@ class InMemoryRepository(IUserRepository):
             # update
             delete_user = users[0]
             self.data.users.remove(delete_user)
-        else:
-            # add
-            user.id = self.data.increment()
         self.data.users.append(user)
 
     def find_by_name(self, user_name: UserName) -> Optional[User]:
@@ -39,14 +36,14 @@ class UserServiceTest:
 
     def test_exists_false(self):
         """UserServiceのexistsメソッドをテスト"""
-        user = User(user_name=UserName(first_name="kta", last_name="mido"))
+        user = User(id=1, user_name=UserName(first_name="kta", last_name="mido"))
         repository = InMemoryRepository()
         service = UserService(repository)
         assert service.exists(user) == False
 
     def test_exists_true(self):
         """UserServiceのexistsメソッドをテスト"""
-        user = User(user_name=UserName(first_name="kta", last_name="mido"))
+        user = User(id=1, user_name=UserName(first_name="kta", last_name="mido"))
         repository = InMemoryRepository()
         repository.save(user)
         service = UserService(repository)

@@ -11,7 +11,7 @@ class IUserApplicationService(metaclass=abc.ABCMeta):
     クライアント側でモック実装を作れるようにインターフェースを作る
     """
     @abc.abstractmethod
-    def register(self, first_name: str, last_name: str):
+    def register(self, id: int, first_name: str, last_name: str):
         raise NotImplementedError
 
     @abc.abstractmethod
@@ -32,9 +32,9 @@ class UserApplicationService(IUserApplicationService):
         self.service = service
         self.repository = repository
 
-    def register(self, first_name: str, last_name: str):
+    def register(self, id: int, first_name: str, last_name: str):
         user_name = UserName(first_name=first_name, last_name=last_name)
-        user = User(user_name=user_name)
+        user = User(id=id, user_name=user_name)
         if self.service.exists(user):
             raise Exception(f"{user.user_name} はすでに存在しています")
         self.repository.save(user)
@@ -97,9 +97,9 @@ if __name__ == "__main__":
     app = UserApplicationService(repository, service)
 
     # 追加
-    app.register("kta", "mido")
-    app.register("foo", "bar")
-    app.register("hoge", "piyo")
+    app.register(1, "kta", "mido")
+    app.register(2, "foo", "bar")
+    app.register(3, "hoge", "piyo")
 
     # 取得
     print(app.get(1))  # id=1 user_name=UserName(first_name='kta', last_name='mido')

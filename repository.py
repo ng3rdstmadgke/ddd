@@ -10,11 +10,6 @@ class UserStoreSchema(BaseModel):
     id: int = 1
     users: List[User]
 
-    def increment(self) -> int:
-        id = self.id
-        self.id += 1
-        return id
-
 class IUserRepository(metaclass=abc.ABCMeta):
     """リポジトリのインターフェース"""
     @abc.abstractmethod
@@ -59,9 +54,6 @@ class UserRepository(IUserRepository):
             # update
             delete_user = users[0]
             store.users.remove(delete_user)
-        else:
-            # add
-            user.id = store.increment()
         store.users.append(user)
         self._save(store)
         return user
@@ -117,7 +109,7 @@ if __name__ == "__main__":
 
 
     # ユーザー追加処理
-    user = User(user_name=UserName(first_name="kta", last_name="mido"))
+    user = User(id=0, user_name=UserName(first_name="kta", last_name="mido"))
 
     # 同名のユーザーが存在しなければuserを追加
     if not service.exists(user):

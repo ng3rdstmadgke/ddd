@@ -43,9 +43,9 @@ if __name__ == "__main__":
     repository.clear()
 
     # 追加
-    app.register("kta", "mido")
-    app.register("foo", "bar")
-    app.register("hoge", "piyo")
+    app.register(1, "kta", "mido")
+    app.register(2, "foo", "bar")
+    app.register(3, "hoge", "piyo")
 
     # 取得
     print(app.get(1))  # id=1 user_name=UserName(first_name='kta', last_name='mido')

@@ -31,9 +31,9 @@ class UserRegisterApplicationService(IUserRegisterApplicationService):
         self.service = service
         self.repository = repository
 
-    def register(self, first_name: str, last_name: str):
+    def register(self, id: int, first_name: str, last_name: str):
         user_name = UserName(first_name=first_name, last_name=last_name)
-        user = User(user_name=user_name)
+        user = User(id=id, user_name=user_name)
         if self.service.exists(user):
             raise Exception(f"{user.user_name} はすでに存在しています")
         self.repository.save(user)
@@ -86,9 +86,10 @@ if __name__ == "__main__":
     repository.clear()
 
     # アプリケーション
+    app = UserRegisterApplicationService(repository, service)
 
     # 追加
-    UserRegisterApplicationService(repository, service).register("kta", "mido")
+    app.register(1, "kta", "mido")
 
     # 取得
     user = UserGetApplicationService(repository, service).get(1)
