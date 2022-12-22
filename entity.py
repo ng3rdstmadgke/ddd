@@ -5,6 +5,10 @@ class User(BaseModel):
     id: int
     user_name: UserName
 
+    def change_name(self, user_name: UserName):
+        """外部から直接インスタンス変数を変更させてはいけない (デメテルの法則)"""
+        self.user_name = user_name
+
     def __eq__(self, other):
         if other is None or not isinstance(other, User):
             return False
@@ -20,5 +24,5 @@ if __name__ == "__main__":
     print(user1 == user3)  # True
 
     # ミュータブル
-    user1.user_name = UserName(first_name="hoge", last_name="fuga")
+    user1.change_name(UserName(first_name="hoge", last_name="fuga"))
     print(user1)  # True
