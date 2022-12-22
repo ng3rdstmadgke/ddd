@@ -1,7 +1,8 @@
 import abc
 from value_object import UserName
 from entity import User
-from repository import IUserRepository, UserRepository, UserService
+from repository import IUserRepository, UserRepository
+from domein_service import UserService
 
 class IUserFactory(metaclass=abc.ABCMeta):
     """ファクトリーのインターフェース"""

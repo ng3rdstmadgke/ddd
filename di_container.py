@@ -1,5 +1,6 @@
 from dependency_injector import containers, providers
-from repository import UserRepository, UserService
+from repository import UserRepository
+from domein_service import UserService
 from application import UserApplicationService
 
 

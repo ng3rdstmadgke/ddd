@@ -1,5 +1,4 @@
 from typing import List
-from dataclasses import dataclass
 from pydantic import BaseModel
 
 class User(BaseModel):
@@ -18,19 +17,22 @@ class Circle(BaseModel):
         return len(self.members) >= 30
 
     def join(self, user: User):
-        # 2. 引数で渡されたオブジェクトのメソッドへのアクセス
+        # ルール2. 引数で渡されたオブジェクトのメソッドへのアクセス
         print(user.greet())
-        # 1. Circle自身のメソッドへのアクセス
+        # ルール1. Circle自身のメソッドへのアクセス
         if self.is_full():
             raise Exception()
-        # 4. Circleのインスタンス変数のメソッドへのアクセス
+        # ルール4. Circleのインスタンス変数のメソッドへのアクセス
         self.members.append(user)
 
 
-if __name__ == "__main__":
+def main():
     circle = Circle()
     user1 = User(id=1, user_name="foo")
-    # 3. 直接インスタンス化されたオブジェクトのメソッドへのアクセス
+    # ルール3. 直接インスタンス化されたオブジェクトのメソッドへのアクセス
+    # NOTE: circle.member.append(user1) のように内部のオブジェクトを直接操作するのはNG
     circle.join(user1)
 
-    # circle.member.append(user1) のように内部のオブジェクトを直接操作するのはNG
+
+if __name__ == "__main__":
+    main()

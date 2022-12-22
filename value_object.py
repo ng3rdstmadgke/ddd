@@ -8,17 +8,17 @@ class UserName(BaseModel):
     # pydantic - Validators: https://pydantic-docs.helpmanual.io/usage/validators/
     @validator("first_name", "last_name")
     def name_validator(cls, v):
-            if len(v) <= 0 or len(v) > 32:
-                raise ValueError("error...")
-            return v
+        if len(v) <= 0 or len(v) > 32:
+            raise ValueError("error...")
+        return v
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
     class Config:
-            # イミュータブルなオブジェクトにする
-            # pydantic - ModelConfig - Options: https://pydantic-docs.helpmanual.io/usage/model_config/#options
-            allow_mutation = False
+        # イミュータブルなオブジェクトにする
+        # pydantic - ModelConfig - Options: https://pydantic-docs.helpmanual.io/usage/model_config/#options
+        allow_mutation = False
 
 if __name__ == "__main__":
     user_name1 = UserName(first_name="keita", last_name="midorikawa")

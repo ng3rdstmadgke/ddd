@@ -57,13 +57,15 @@ class UserGetInteractor(IUserGetInputPort):
         output_data = UserUpdateOutputData(user_data=user_data)
         self.presenter.output(output_data)
 
+#
+# [Controller]
+#
+def controller(interactor: IUserGetInputPort):
+    input_data = UserGetInputData(id=1)
+    interactor.handle(input_data)
+
 if __name__ == "__main__":
-    # [Controller]
-
-
     repository = UserRepository("store.json")
     presenter = UserGetPresenter()
     interactor = UserGetInteractor(repository, presenter)
-
-    input_data = UserGetInputData(id=1)
-    interactor.handle(input_data)
+    controller(interactor)

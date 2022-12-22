@@ -1,7 +1,8 @@
 from typing import Optional
 from entity import User
 from value_object import UserName
-from repository import IUserRepository, UserStoreSchema, UserService
+from repository import IUserRepository, UserStoreSchema
+from domein_service import UserService
 
 class InMemoryRepository(IUserRepository):
     """テスト用のインメモリなリポジトリを実装"""
